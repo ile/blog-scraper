@@ -37,3 +37,5 @@ options = {
 	next: '.article-actions .continue-reading .next a'
 }
 ```
+
+Note: the time extraction expects a `datetime` attribute at the time selector's target element.
