@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+var scraper = require('./index.js');
+
+function usage() {
+	console.log('\nScrape usage');
+	console.log('\tnode index.js scrape <url> [db-name]');
+	console.log('\nPosts will be saved to mongodb://blog-scraper by default\n');
+}
+
+(function main() {
+	var url, dbName;
+
+	if (process.argv.length < 3) {
+		usage();
+		process.exit(1);
+	}
+	
+	url = process.argv[2];
+	dbName = process.argv[3] || 'blog-scraper';
+	scraper.init(dbName, url);
+	scraper(url);
+}());
+
+

@@ -6,20 +6,22 @@
  * (C) Ilkka Huotari
  */
 
+module.exports = getContents;
+module.exports.init = init;
+
 var cheerio = require("cheerio"),
 	mongo = require('mongoskin'),
 	moment = require('moment'),
 	request = require('request'),
 	URL = require('url'),
-	db = mongo.db("mongodb://localhost:27017/blog-scraper", {native_parser:true}),
+	db,
 	domain;
 
-db.bind('posts');
-
-function usage() {
-	console.log('\nScrape usage');
-	console.log('\tnode index.js scrape <url>');
-	console.log('\nPosts will be saved to mongodb://blog-scraper\n');
+function init(dbName, url) {
+	db = mongo.db("mongodb://localhost:27017/" + dbName, {native_parser:true});
+	db.bind('posts');
+	var parsed = URL.parse(url);
+	domain = parsed.protocol+'//'+parsed.host;
 }
 
 function finish() {
@@ -32,7 +34,7 @@ function getContents(url) {
 
 	function done(error, response, body) {
 		if (error) {
-			console.log(i+": "+error);
+			console.log(error);
 
 			// try again
 			getContents(url);
@@ -87,17 +89,5 @@ function absolute(base, relative) {
     return relative.match(/^https?:/)? relative: base + relative;
 }
 
-(function main() {
-	var url;
 
-	if (process.argv.length !== 3) {
-		usage();
-		process.exit(1);
-	}
-	
-	url = process.argv[2];
-	parsed = URL.parse(url);
-	domain = parsed.protocol+'//'+parsed.host;
-	getContents(url);
-}());
 
