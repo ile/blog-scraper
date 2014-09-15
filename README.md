@@ -11,7 +11,7 @@ Saves data to mongodb.
  
 ## usage
 
-`./scrape &lt;url&gt; [db-name]`
+`./scrape <url> [db-name]`
 
 - `url` should be the url to the first post. On that blog page should be a link to the next post.
 - db-name is `blog-scraper` by default.
