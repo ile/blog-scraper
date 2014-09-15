@@ -64,7 +64,7 @@ function getContents(url) {
 					title: $(options.title).html(),
 					body: $(options.body).html(),
 					comments: $(options.comments).html(),
-					date: moment($(options.time).attr('datetime')).toDate()
+					time: moment($(options.time).attr('datetime')).toDate()
 				};
 			}
 			catch (e) {
