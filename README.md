@@ -36,4 +36,4 @@ options = {
 }
 ```
 
-Note: the time extraction expects a `datetime` attribute at the time selector's target element.
+Note: the time extraction expects a `datetime` attribute at the selector's target element.
