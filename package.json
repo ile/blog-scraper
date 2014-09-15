@@ -1,7 +1,7 @@
 {
-  "name": "tiede-scraper",
+  "name": "blog-scraper",
   "version": "0.0.0",
-  "description": "Tiede.fi Scraper",
+  "description": "A general blog scraper",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
