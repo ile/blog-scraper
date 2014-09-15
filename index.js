@@ -25,11 +25,9 @@ var cheerio = require("cheerio"),
 		next: '.article-actions .continue-reading .next a'
 	};
 
-function init(dbName, url, options_) {
+function init(dbName, options_) {
 	db = mongo.db("mongodb://localhost:27017/" + dbName, {native_parser:true});
 	db.bind('posts');
-	var parsed = URL.parse(url);
-	domain = parsed.protocol+'//'+parsed.host;
 
 	if (options_) {
 		options = merge(options, options_);
@@ -43,6 +41,11 @@ function finish() {
 // get url contents (blog post)
 function getContents(url) {
 	console.log(url);
+
+	if (!domain) {
+		var parsed = URL.parse(url);
+		domain = parsed.protocol+'//'+parsed.host;
+	}
 
 	function done(error, response, body) {
 		if (error) {

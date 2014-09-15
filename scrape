@@ -18,7 +18,7 @@ function usage() {
 	
 	url = process.argv[2];
 	dbName = process.argv[3] || 'blog-scraper';
-	scraper.init(dbName, url);
+	scraper.init(dbName);
 	scraper(url);
 }());
 
