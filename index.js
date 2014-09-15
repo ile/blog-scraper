@@ -44,9 +44,10 @@ function getContents(url) {
 			try {
 				doc = {
 					url: url,
-					body: $('#main-content > .node').html(),
-					comments: $('#comments').html(),
-					date: moment($('article time').attr('datetime')).toDate()
+					title: $('div.contentContainer section.wide-article > article header h1').html(),
+					body: $('div.contentContainer section.wide-article > article div.article-body').html(),
+					comments: $('section.comment-list > section').html(),
+					date: moment($('div.contentContainer section.wide-article > article time').attr('datetime')).toDate()
 				};
 			}
 			catch (e) {
