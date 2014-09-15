@@ -1,7 +1,7 @@
 blog-scraper
 ================
 
-A general blog scraper.
+A generic blog scraper.
 
 Saves data to mongodb. 
 
