@@ -1,0 +1,19 @@
+{
+  "name": "tiede-scraper",
+  "version": "0.0.0",
+  "description": "Tiede.fi Scraper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "*",
+    "cheerio": "^0.17.0",
+    "jsdom": "*",
+    "moment": "*",
+    "mongoskin": "*",
+    "request": "^2.39.0"
+  }
+}
