@@ -9,4 +9,6 @@ Saves data to mongodb, db blog-scraper, collection posts
 
 node index.js url
 
-`url` should be the url to the first post. On that blog page ther should be the link to the next post (you can edit the selector path in the `index.js`).
+`url` should be the url to the first post. On that blog page ther should be the link to the next post.
+
+Edit the selectors in `index.js` for title, body, comments and the next url!
