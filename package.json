@@ -11,6 +11,7 @@
   "dependencies": {
     "async": "*",
     "cheerio": "^0.17.0",
+    "deepmerge": "^0.2.7",
     "jsdom": "*",
     "moment": "*",
     "mongoskin": "*",

@@ -14,14 +14,26 @@ var cheerio = require("cheerio"),
 	moment = require('moment'),
 	request = require('request'),
 	URL = require('url'),
+	merge = require('deepmerge'),
 	db,
-	domain;
+	domain,
+	options = {
+		title: 'div.contentContainer section.wide-article > article header h1',
+		body: 'div.contentContainer section.wide-article > article div.article-body',
+		comments: 'section.comment-list > section',
+		time: 'div.contentContainer section.wide-article > article time',
+		next: '.article-actions .continue-reading .next a'
+	};
 
-function init(dbName, url) {
+function init(dbName, url, options_) {
 	db = mongo.db("mongodb://localhost:27017/" + dbName, {native_parser:true});
 	db.bind('posts');
 	var parsed = URL.parse(url);
 	domain = parsed.protocol+'//'+parsed.host;
+
+	if (options_) {
+		options = merge(options, options_);
+	}
 }
 
 function finish() {
@@ -46,10 +58,10 @@ function getContents(url) {
 			try {
 				doc = {
 					url: url,
-					title: $('div.contentContainer section.wide-article > article header h1').html(),
-					body: $('div.contentContainer section.wide-article > article div.article-body').html(),
-					comments: $('section.comment-list > section').html(),
-					date: moment($('div.contentContainer section.wide-article > article time').attr('datetime')).toDate()
+					title: $(options.title).html(),
+					body: $(options.body).html(),
+					comments: $(options.comments).html(),
+					date: moment($(options.time).attr('datetime')).toDate()
 				};
 			}
 			catch (e) {
@@ -64,7 +76,7 @@ function getContents(url) {
 					console.log(error);
 				}
 				else {
-					var next = $('.article-actions .continue-reading .next a').first();
+					var next = $(options.next).first();
 
 					if (next.length) {
 						getContents(absolute(domain, next.attr('href')));
